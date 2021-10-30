@@ -35,12 +35,12 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Say World"
+          name: "Save to output"
           command: echo "Hello, World from output" > output.txt
       - persist_to_workspace:
-        root: /tmp/workspace
-        paths:
-          - output.txt
+          root: /tmp/workspace
+          paths:
+            - output.txt
   print_output_file:
     docker:
       - image: alpine:latest
