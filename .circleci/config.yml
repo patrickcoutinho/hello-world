@@ -51,7 +51,7 @@ jobs:
       - checkout
       - run:
           name: "Say World"
-          command: cat ~/output.txt
+          command: cat ~/project/output.txt
       - attach_workspace:
           at: .
 
