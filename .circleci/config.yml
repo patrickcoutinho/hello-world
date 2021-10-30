@@ -38,9 +38,9 @@ jobs:
           name: "Save to output"
           command: echo "Hello, World from output" > ~/output.txt
       - persist_to_workspace:
-          root: ~/
+          root: .
           paths:
-            - ./*
+            - .
   print_output_file:
     docker:
       - image: alpine:latest
@@ -50,7 +50,7 @@ jobs:
           name: "Say World"
           command: cat ~/output.txt
       - attach_workspace:
-          at: ~/
+          at: .
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
