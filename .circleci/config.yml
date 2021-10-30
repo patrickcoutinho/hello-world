@@ -52,9 +52,9 @@ jobs:
       - run:
           name: "Say World"
           command: |
-            cat ~/project/output.txt
-            ls -la
             pwd
+            ls -la
+            cat ~/project/output.txt
       - attach_workspace:
           at: .
 
