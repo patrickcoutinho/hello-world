@@ -42,9 +42,9 @@ jobs:
             pwd
             ls -la
       - persist_to_workspace:
-          root: /root/
+          root: ~/
           paths:
-            - project/
+            - .
   print_output_file:
     docker:
       - image: alpine:latest
