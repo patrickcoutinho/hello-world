@@ -40,6 +40,7 @@ jobs:
             echo "Hello, World from output" > output.txt
             cat output.txt
             pwd
+            ls -la
       - persist_to_workspace:
           root: /root/
           paths:
