@@ -38,7 +38,7 @@ jobs:
           name: "Save to output"
           command: echo "Hello, World from output" > output.txt
       - persist_to_workspace:
-          root: ./
+          root: /tmp/
           paths:
             - output.txt
   print_output_file:
@@ -50,17 +50,17 @@ jobs:
           name: "Say World"
           command: cat output.txt
       - attach_workspace:
-          at: ./
+          at: /tmp/
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
     jobs:
-      - say-hello
-      - say-world:
-          requires:
-            - say-hello
+      # - say-hello
+      # - say-world:
+      #     requires:
+      #       - say-hello
       - save_hello_world_output
       - print_output_file:
           requires:
