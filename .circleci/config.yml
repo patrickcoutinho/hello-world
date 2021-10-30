@@ -29,6 +29,29 @@ jobs:
       - run:
           name: "Say World"
           command: "echo World! $MY_TESTE"
+  save_hello_world_output:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run:
+          name: "Say World"
+          command: echo "Hello, World from output" > output.txt
+      - persist_to_workspace:
+        root: /tmp/workspace
+        paths:
+          - target/output.txt
+          - build/*
+  print_output_file:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run:
+          name: "Say World"
+          command: cat output.txt
+      - attach_workspace:
+        at: /tmp/workspace
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
