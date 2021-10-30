@@ -41,9 +41,9 @@ jobs:
             cat output.txt
             pwd
       - persist_to_workspace:
-          root: .
+          root: /root/
           paths:
-            - .
+            - project/
   print_output_file:
     docker:
       - image: alpine:latest
@@ -51,7 +51,10 @@ jobs:
       - checkout
       - run:
           name: "Say World"
-          command: cat ~/project/output.txt
+          command: |
+            cat ~/project/output.txt
+            ls -la
+            pwd
       - attach_workspace:
           at: .
 
