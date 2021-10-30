@@ -36,7 +36,10 @@ jobs:
       - checkout
       - run:
           name: "Save to output"
-          command: echo "Hello, World from output" > ~/output.txt
+          command: 
+            - echo "Hello, World from output" > output.txt
+            - cat output.txt
+            - pwd
       - persist_to_workspace:
           root: .
           paths:
