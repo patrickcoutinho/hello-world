@@ -38,10 +38,10 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-      # - run:
-      #     name: "Say World"
-      #     command: "echo World! $MY_TESTE"
-      - sayx:
+      - run:
+          name: "Say World"
+          command: exit 1
+      - say:
           to: "World! $MY_TESTE"
       - run:
           name: Echo fail
