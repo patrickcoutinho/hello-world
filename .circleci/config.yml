@@ -42,7 +42,7 @@ jobs:
       #     name: "Say World"
       #     command: "echo World! $MY_TESTE"
       - say:
-          to: "echo World! $MY_TESTE"
+          to: "World! $MY_TESTE"
   save_hello_world_output:
     <<: *defaults
     steps:
