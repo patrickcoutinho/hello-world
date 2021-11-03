@@ -41,8 +41,8 @@ jobs:
       # - run:
       #     name: "Say World"
       #     command: "echo World! $MY_TESTE"
-      - say:
-      to: "World! $MY_TESTE"
+      - sayx:
+          to: "World! $MY_TESTE"
       - run:
           name: Echo fail
           command: echo "fail!!!!!!"
