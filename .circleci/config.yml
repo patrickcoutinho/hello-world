@@ -42,7 +42,11 @@ jobs:
       #     name: "Say World"
       #     command: "echo World! $MY_TESTE"
       - say:
-          to: "World! $MY_TESTE"
+      to: "World! $MY_TESTE"
+      - run:
+          name: Echo fail
+          command: echo "fail!!!!!!"
+          when: on_fail
   save_hello_world_output:
     <<: *defaults
     steps:
