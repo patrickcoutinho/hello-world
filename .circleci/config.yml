@@ -4,19 +4,31 @@ version: 2.1
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+defaults: &defaults
+  docker:
+    - image: alpine:latest
+  working_directory: ~/project
+
+commands:
+  say:
+    description: "A very simple command for demonstration purposes"
+    parameters:
+      to:
+        type: string
+        default: "Hello, World"
+    steps:
+      - run: echo << parameters.to >>
 jobs:
   say-hello:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: circleci/node:13.8.0
+    <<: *defaults
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, "
+      - sayhello:
+          to: "Hello"
   say-world:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
@@ -26,12 +38,13 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-      - run:
-          name: "Say World"
-          command: "echo World! $MY_TESTE"
+      # - run:
+      #     name: "Say World"
+      #     command: "echo World! $MY_TESTE"
+      - sayhello:
+          to: "echo World! $MY_TESTE"
   save_hello_world_output:
-    docker:
-      - image: alpine:latest
+    <<: *defaults
     steps:
       - checkout
       - run:
@@ -64,12 +77,12 @@ jobs:
 workflows:
   say-hello-workflow:
     jobs:
-      # - say-hello
-      # - say-world:
-      #     requires:
-      #       - say-hello
-      - save_hello_world_output
-      - print_output_file:
+      - say-hello
+      - say-world:
           requires:
-            - save_hello_world_output
+            - say-hello
+      # - save_hello_world_output
+      # - print_output_file:
+      #     requires:
+      #       - save_hello_world_output
             
