@@ -27,7 +27,7 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-      - sayhello:
+      - say:
           to: "Hello"
   say-world:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
@@ -41,7 +41,7 @@ jobs:
       # - run:
       #     name: "Say World"
       #     command: "echo World! $MY_TESTE"
-      - sayhello:
+      - say:
           to: "echo World! $MY_TESTE"
   save_hello_world_output:
     <<: *defaults
